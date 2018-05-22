@@ -1,0 +1,8 @@
+
+# If requested resource exists as a file or directory, skip next two rules
+RewriteCond %{DOCUMENT_ROOT}/$1 -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/$1 -d
+RewriteRule (.*) - [S=1]
+#
+# Else rewrite requests for non-existent resources to /index.php
+RewriteRule (.*) /index.php [L,QSA]
